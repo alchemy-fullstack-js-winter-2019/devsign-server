@@ -1,0 +1,90 @@
+Auth 0
+npm i express-jwt jwks-rsa
+
+in auth0
+- get client id
+- get domain 
+
+middleware folder
+create ensurAuth File in middleware
+- const jwt = require('express');
+  const jwksRsa = require('jwks-rsa');
+
+  modeule.exports = () => {
+    return jwt({
+      skip: process.env.NODE_ENV === 'test',
+      secret: jwksRsa({
+        cache: true,
+        rateLimit: true,
+        jwksRequestPerMinute: 10,
+        jwksUri:`https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+      }),
+      audience: process.env.AUTH0_CLIENT_ID,
+      issuere: `http://${process.env.AUTH0_DOMAIN}/`,
+      algorithms: ['RS256']
+    });
+  };
+
+  from auth0 website get -.env file
+  - auth_client id = 
+  - auth0_domain=
+
+in Autho 0
+- application
+- create backend application
+- AUTH0 MANAGEMNET application  machine to machine applications to turn on authorization
+  - give privlieages
+    - select - read users
+  - under setting copy identifier 
+
+  Create Management client
+  - create a new directory under lib
+    - services 
+      auth.js
+        - npm i auth0
+        - const { ManagementClient } = require('auth0');
+        const auth0 = new ManagementClient({
+          clientId: process.env.AUTH0_MANAGEMENT_CLIENT_ID;
+          clientSecret: process.env.AUTH0_CLIENT_ID
+          domain:
+          audience: process.env.AUTH0_AUDIENCE,
+          scope: 'read-users',
+        });
+      const getUser = id => {
+        return auth0.getUser({ id });
+      };
+
+      const getUsers = ids => { //find me all the users were the user id is this id or this other id - get all users that exist with this list of ids
+        return auth0.getUsers({
+          q: 'user id: ${ids.join(' OR ')}`
+        });
+
+      };
+      gotes through all of our models/tweets and grabs all users ids from models/tweets
+      So need to add the id to a set because set automatically get rid of duplications in arrays. 
+      then we change the set into an array
+      const joinUsers = (models, key = 'user' ) => {
+        const ids = models.map(models => models[key]); //get just the id - get all the users value
+        const noRepeatIds = new Set(ids) //can never have duplicates in a set. fast way to get rid of duplicates
+        const noRepeatIdsAsAnArray = [...noRepeatIds]; // turn back into an array
+        const users = await getUsers(noRepeatIdsAsAnArray); //goes to auth0 and returns an array of users
+
+        return models .map(model => ({ //model is list of tweets
+        ...model, //iterate through all of my model/tweets sers - calling .toJSON() to remove all the other mongoose stuff
+        [key]: user: users.find(u => u.user_id === model[key]) //find user that has an id that matches - associated
+        })) //find user whose id is the same as the id that is in tweet
+      }
+      ;
+module.exports = {
+  getuser,
+  getUsers,
+  populateUsers
+};
+
+auth0
+- users and roles
+- users
+- RAWJONS
+    - userid = copy and add it to seed data 
+
+    .then(tweets => populateUsers(tweets, 'handle')) //populating with Auth0 

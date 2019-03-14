@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/crperezchica/devsign-server#readme",
   "dependencies": {
+    "auth0": "^2.15.0",
     "chance": "^1.0.18",
     "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "jwks-rsa": "^1.4.0",
     "mongoose": "^5.4.19"
   },
   "devDependencies": {
