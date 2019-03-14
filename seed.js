@@ -1,8 +1,9 @@
 require('dotenv').config();
+require('./lib/utils/connect')();
 const mongoose = require('mongoose');
+const seedData = require('./test/seedData');
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+seedData()
+  .then(() => console.log('done'))
+  .finally(() => mongoose.connection.close());
 
-module.exports = () => {
-  
-};
