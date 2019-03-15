@@ -4,7 +4,13 @@
   "description": "* Write a architectural design document (ADD.md)   * Include your user stories   * Include your tech stack   * Include models   * Include routes   * How will you test it?   * Where will you deploy it?   * How will you secure it? (user auth) * Create a back-end for your twitter clone * deploy your twitter clone to heroku",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "seed": "node seed.js",
+    "start": "node server.js",
+    "start:watch": "nodemon server.js",
+    "test": "jest --verbose",
+    "test:watch": "npm run test -- --watch",
+    "lint": "eslint .",
+    "pretest": "npm run lint"
   },
   "repository": {
     "type": "git",
