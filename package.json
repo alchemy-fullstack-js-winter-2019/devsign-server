@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/caripizza/devsign-server#readme",
   "dependencies": {
+    "auth0": "^2.15.0",
     "chance": "^1.0.18",
     "express": "^4.16.4",
     "mongoose": "^5.4.19",
