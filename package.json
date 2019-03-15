@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "jest",
+    "test": "jest --verbose --passWithNoTests",
     "test:watch": "jest --watch",
     "start": "nodemon server.js"
   },
