@@ -8,6 +8,15 @@ const app = require('../../lib/app');
 
 jest.mock('../../lib/services/auth.js');
 
+const createTweet = () => {
+  return request(app)
+    .post('/tweets')
+    .send({
+      user: 'auth0|5c8999089c0ac45b5d211df3',
+      text: 'teewt'
+    })
+    .then(res => res.body);
+};
 describe('tweet routes', () => {
   beforeEach(() => {
     return seedData(1000);
@@ -38,6 +47,20 @@ describe('tweet routes', () => {
           user: expect.any(String),
           text: 'teewt',
           __v: 0
+        });
+      });
+  });
+
+  it('can delete a tweet', () => {
+    return createTweet()
+      .then(createdTweet => {
+        return request(app)
+          .delete(`/tweets/${createdTweet._id}`);
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          user: 'auth0|5c8999089c0ac45b5d211df3',
+          text: 'teewt'
         });
       });
 
