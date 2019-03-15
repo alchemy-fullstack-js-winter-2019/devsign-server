@@ -6,6 +6,7 @@
   "scripts": {
     "seed": "node seed.js",
     "start": "node server.js",
+    "lint": "eslint .",
     "start:watch": "nodemon server.js",
     "test": "jest --verbose",
     "test:watch": "npm run test -- --watch"
