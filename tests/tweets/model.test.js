@@ -2,7 +2,6 @@ require('dotenv').config();
 require('../../lib/utils/connect')();
 
 const mongoose = require('mongoose');
-const { Types } = require('mongoose');
 const Tweet = require('../../lib/models/Tweet');
 
 describe('tweet model', () => {
@@ -22,9 +21,8 @@ describe('tweet model', () => {
       text: 'first tweet'
     });
     expect(tweet.toJSON()).toEqual({
-      _id: expect.any(Types.ObjectId),
-      handle: 'T_on_A',
+      _id: expect.any(Object),
       text: 'first tweet'
     });
   });
-}) 
+});

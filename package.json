@@ -14,7 +14,8 @@
     "test": "jest",
     "test:watch": "jest --watch --runInBand",
     "lint": "eslint .",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "seed": "node seed.js"
   },
   "repository": {
     "type": "git",
