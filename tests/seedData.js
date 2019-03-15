@@ -1,4 +1,5 @@
 const Tweet = require('../lib/models/Tweet');
+const Message = require('../lib/models/Message');
 const chance = require('chance').Chance();
 
 function seedData(count = 100) {
@@ -9,4 +10,18 @@ function seedData(count = 100) {
 
   return Tweet.create(tweetsToCreate);
 }
-module.exports = seedData;
+
+function seedDataMessage(count = 100) {
+  const messagesToCreate = [...Array(count)].map(() => ({
+    user: 'auth0|5c8999089c0ac45b5d211df3',
+    text: chance.sentence()
+  }));
+
+  return Message.create(messagesToCreate);
+}
+
+module.exports = {
+  seedData,
+  seedDataMessage
+};
+
