@@ -6,6 +6,8 @@ const request = require('supertest');
 const Chirp = require('../lib/models/Chirp');
 const User = require('../lib/models/User');
 
+jest.mock('../lib/middleware/ensureAuth');
+
 describe('chirps routes', () => {
   beforeEach(done => mongoose.connection.dropDatabase((done())));
   afterAll(done => mongoose.connection.close(done()));
@@ -25,23 +27,31 @@ describe('chirps routes', () => {
       });
   };
 
-  it('creates a new chirp', () => {
-    return createUser()
-      .then(createdUser => {
-        return request(app)
-        .post('/chirps')
-        .send({
-          handle: createdUser._id,
-          text: 'my first chirp'
-        })
-        .then(res => {
-          expect(res.body).toEqual({
-            handle: expect.any(String),
-            text: 'my first chirp',
-            _id: expect.any(String),
-            __v: 0
-          });
-        });
+  it('creates a new chirp', done => {
+    return request(app)
+    .post('/chirps')
+    .send({
+      text: 'my first chirp'
+    })
+    .then(res => {
+      expect(res.body).toEqual({
+        handle: expect.any(String),
+        text: 'my first chirp',
+        _id: expect.any(String),
+        __v: 0
       });
+      done();
+    });
+  });
+
+  it('gets all the chirps', () => {
+    return Promise.all([...Array(3)].map(el => createChirp(el)))
+    .then(() => {
+    return request(app)
+    .get('/chirps')
+    })
+    .then(res => {
+      expect(res.body).toHaveLength(3);
+    });
   });
 });
