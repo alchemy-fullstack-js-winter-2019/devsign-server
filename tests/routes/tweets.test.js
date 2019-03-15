@@ -22,6 +22,25 @@ describe('tweets routes', () => {
     mongoose.connection.close(done);
   });
 
+  // it('can post a tweet', () => {
+  //   const tweet = {
+  //     user: 'test@test.com',
+  //     text: 'blah blah'
+  //   };
+  //   return request(app)
+  //     .post('/tweets')
+  //     .send(tweet)
+  //     .then(res => {
+  //       expect(res.body).toEqual({
+  //         tweet: {
+  //           _id: expect.any(String),
+  //           user: 'test@test.com',
+  //           text: 'blah blah'
+  //         }
+  //       });
+  //     });
+  // });
+
   it('can get a list of tweets', () => {
     return request(app)
       .get('/tweets')
