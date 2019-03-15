@@ -88,3 +88,6 @@ auth0
     - userid = copy and add it to seed data 
 
     .then(tweets => populateUsers(tweets, 'handle')) //populating with Auth0 
+
+in routes
+- need to check the user who create is the same user
