@@ -1,31 +1,25 @@
 require('dotenv').config();
 require('../lib/utils/connect')();
+
 const mongoose = require('mongoose');
 const app = require('../lib/app');
 const request = require('supertest');
-const Chirp = require('../lib/models/Chirp');
-const User = require('../lib/models/User');
+const seedData = require('./seedData');
 
 jest.mock('../lib/middleware/ensureAuth');
+jest.mock('../lib/services/auth.js');
 
 describe('chirps routes', () => {
-  beforeEach(done => mongoose.connection.dropDatabase((done())));
-  afterAll(done => mongoose.connection.close(done()));
+  beforeEach(done => {
+    mongoose.connection.dropDatabase((done()));
+  });
 
-  const createUser = (name = 'name', handle = 'handle', profileImage ='imageUrl', bio = 'bio', location = 'location') => {
-    return User.create({ name, handle, profileImage, bio, location })
-    .then(user => {
-      return { ...user, _id: user._id.toString() };
-    });
-  };
+  beforeEach(() => seedData());
 
-  const createChirp = (handle, text = 'some text') => {
-    return createUser(handle)
-      .then(user => {
-        return Chirp.create({ handle: user._id, text })
-        .then(chirp => ({ ...chirp, _id: chirp._id.toString() }))
-      });
-  };
+  afterAll(done => {
+    mongoose.connection.close();
+    done();
+  });
 
   it('creates a new chirp', done => {
     return request(app)
@@ -44,14 +38,13 @@ describe('chirps routes', () => {
     });
   });
 
-  it('gets all the chirps', () => {
-    return Promise.all([...Array(3)].map(el => createChirp(el)))
-    .then(() => {
+  it('gets all the chirps', done => {
     return request(app)
     .get('/chirps')
+    .then(res => res.body)
+    .then(chirps => {
+      expect(chirps).toHaveLength(100);
+      done();
     })
-    .then(res => {
-      expect(res.body).toHaveLength(3);
-    });
   });
 });
