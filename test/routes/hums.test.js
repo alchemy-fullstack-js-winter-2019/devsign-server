@@ -17,6 +17,10 @@ describe('hums route', () => {
     return mongoose.connection.dropDatabase();
   });
 
+  afterAll(done => {
+    return mongoose.disconnect(done);
+  });
+
   it('can get a list of hums', () => {
     return request(app)
       .get('/hums')
@@ -38,6 +42,26 @@ describe('hums route', () => {
           _id: expect.any(String),
           hum: 'this is my hum'
         });
+      });
+  });
+
+  it.only('can delete a hum by id', () => {
+    return request(app)
+      .post('/hums')
+      .send({
+        hum: 'this is my hum'
+      })
+      .then(res => {
+        return request(app)
+          .delete(`/hums/${res.body._id}`)
+          .then(res => {
+            expect(res.body).toEqual({
+              __v: 0,
+              user: '1234',
+              _id: expect.any(String),
+              hum: 'this is my hum'
+            });
+          });
       });
   });
 });
