@@ -24,4 +24,22 @@ describe('tweet routes', () => {
         expect(tweets).toHaveLength(1000);
       });
   });
+
+  it('can post a tweet', () => {
+    return request(app)
+      .post('/tweets')
+      .send({
+        user: 'auth0|5c8999089c0ac45b5d211df3',
+        text: 'teewt'
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          user: expect.any(String),
+          text: 'teewt',
+          __v: 0
+        });
+      });
+
+  });
 });
