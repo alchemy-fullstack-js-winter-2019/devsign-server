@@ -13,7 +13,8 @@ function seedData(count = 100) {
 
 function seedDataMessage(count = 100) {
   const messagesToCreate = [...Array(count)].map(() => ({
-    user: 'auth0|5c8999089c0ac45b5d211df3',
+    sender: 'auth0|5c8999089c0ac45b5d211df3',
+    receiver:'auth0|5c898663f1c10c625d363f47',
     text: chance.sentence()
   }));
 

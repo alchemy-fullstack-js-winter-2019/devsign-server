@@ -17,12 +17,14 @@ describe('message model', () => {
 
   it('validates a good model', () => {
     const message = new Message ({
-      user: 'T_on_A',
+      sender: 'T_on_A',
+      receiver: 'TT',
       text: 'message'
     });
     expect(message.toJSON()).toEqual({
       _id: expect.any(Object),
-      user: 'T_on_A',
+      sender: 'T_on_A',
+      receiver: 'TT',
       text: 'message'
     });
   });
