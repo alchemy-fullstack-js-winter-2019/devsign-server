@@ -31,6 +31,7 @@ describe('tweets routes', () => {
   //     .post('/tweets')
   //     .send(tweet)
   //     .then(res => {
+  //       console.log(res);
   //       expect(res.body).toEqual({
   //         tweet: {
   //           _id: expect.any(String),
