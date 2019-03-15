@@ -20,7 +20,7 @@ describe('tweet routes', () => {
     return request(app)
       .get('/tweets')
       .then(res => {
-        console.log(res);
+        console.log('res', res);
       })
       .then(tweets => {
         expect(tweets).toHaveLength(1000);
