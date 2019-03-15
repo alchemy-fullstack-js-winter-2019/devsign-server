@@ -8,15 +8,15 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 jest.mock('../lib/services/auth.js');
+afterAll(() => {
+    mongoose.connection.close();
+});
 
-describe('tweets routes', async() => {
+describe('tweets routes', () => {
     beforeEach(() => {
         return seedData(100);
     });
 
-    afterAll(() => {
-        mongoose.connection.close();
-    });
 
     afterEach(() => {
         return mongoose.connection.dropDatabase();
