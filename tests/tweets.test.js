@@ -14,6 +14,10 @@ describe('tweets routes', () => {
         return seedData(100);
     });
 
+    afterAll(() => {
+        mongoose.connection.close();
+    });
+
     afterEach(() => {
         return mongoose.connection.dropDatabase();
     });
