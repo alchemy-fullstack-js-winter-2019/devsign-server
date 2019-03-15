@@ -3,4 +3,5 @@ node_js: "node"
 services:
   - mongodb
 env:
-  - MONGODB_URI=mongodb://localhost:27017/tweets AUTH_SECRET=MONKEYBANANASPLITS
+  - MONGODB_URI=mongodb://localhost:27017/devsign 
+  - AUTH_SECRET=no
