@@ -19,9 +19,7 @@ describe('tweet routes', () => {
   it('can get a list of tweets', () => {
     return request(app)
       .get('/tweets')
-      .then(res => {
-        console.log('res', res);
-      })
+      .then(res => res.body)
       .then(tweets => {
         expect(tweets).toHaveLength(1000);
       });
