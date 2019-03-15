@@ -17,11 +17,12 @@ describe('tweet model', () => {
 
   it('validates a good model', () => {
     const tweet = new Tweet ({
-      handle: 'T_on_A',
+      user: 'T_on_A',
       text: 'first tweet'
     });
     expect(tweet.toJSON()).toEqual({
       _id: expect.any(Object),
+      user: 'T_on_A',
       text: 'first tweet'
     });
   });

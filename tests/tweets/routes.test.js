@@ -2,21 +2,23 @@ require('dotenv').config();
 require('../../lib/utils/connect')();
 
 const mongoose = require('mongoose');
-const seedData = require('../seedData');
+const { seedData } = require('../seedData');
 const request = require('supertest');
 const app = require('../../lib/app');
 
 jest.mock('../../lib/services/auth.js');
+jest.mock('../../lib/middleware/ensureAuth.js');
+
 
 const createTweet = () => {
   return request(app)
     .post('/tweets')
     .send({
-      user: 'auth0|5c8999089c0ac45b5d211df3',
       text: 'teewt'
     })
     .then(res => res.body);
 };
+
 describe('tweet routes', () => {
   beforeEach(() => {
     return seedData(1000);
@@ -38,7 +40,6 @@ describe('tweet routes', () => {
     return request(app)
       .post('/tweets')
       .send({
-        user: 'auth0|5c8999089c0ac45b5d211df3',
         text: 'teewt'
       })
       .then(res => {
@@ -59,10 +60,11 @@ describe('tweet routes', () => {
       })
       .then(res => {
         expect(res.body).toEqual({
-          user: 'auth0|5c8999089c0ac45b5d211df3',
+          _id: expect.any(String),
+          user: expect.any(String),
+          __v: 0,
           text: 'teewt'
         });
       });
-
   });
 });
