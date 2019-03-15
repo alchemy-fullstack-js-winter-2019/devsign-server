@@ -18,6 +18,10 @@ describe('tweets routes', () => {
     return mongoose.connection.dropDatabase();
   });
 
+  afterAll(() => {
+    return mongoose.connection.close();
+  });
+
   it('posts a tweet', () => {
     return request(app)
       .post('/tweets')
