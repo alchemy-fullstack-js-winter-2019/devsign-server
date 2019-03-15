@@ -4,7 +4,6 @@ services:
   - mongodb
 env:
   - MONGODB_URI=mongodb://localhost:27017/devsign 
-  - AUTH_SECRET=no
 deploy:
   provider: heroku
   api_key:
