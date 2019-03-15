@@ -9,7 +9,7 @@ const app = require('../lib/app');
 
 jest.mock('../lib/services/auth.js');
 
-describe('tweets routes', () => {
+describe('tweets routes', async() => {
     beforeEach(() => {
         return seedData(100);
     });
