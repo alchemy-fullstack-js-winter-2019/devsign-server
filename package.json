@@ -16,6 +16,9 @@
     "type": "git",
     "url": "git+https://github.com/crperezchica/devsign-server.git"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -29,7 +32,8 @@
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
     "jwks-rsa": "^1.4.0",
-    "mongoose": "^5.4.19"
+    "mongoose": "^5.4.19",
+    "start": "^5.1.0"
   },
   "devDependencies": {
     "dotenv": "^7.0.0",
