@@ -1,13 +1,14 @@
 const Chance = require('chance');
 const chance = new Chance();
 const User = require('../lib/models/User');
+const Tweet = require('../lib/models/Tweet');
 
 const DEFAULT_TOTAL_USERS = 15;
-// const DEFAULT_TOTAL_TWEETS = 30;
+const DEFAULT_TOTAL_TWEETS = 30;
 
 module.exports = (
   totalUsers = DEFAULT_TOTAL_USERS,
-  // totalTweets = DEFAULT_TOTAL_TWEETS
+  totalTweets = DEFAULT_TOTAL_TWEETS
 ) => {
   return Promise.all(
     [...Array(totalUsers)].map(() => {
@@ -16,14 +17,15 @@ module.exports = (
         password: 'passittodaword'
       });
     })
-  );
-  // .then(users => {
-  //   return Promise.all(
-  //     [...Array(totalTweets)].map(() => {
-  //       return Tweet.create({
-          
-  //       });
-  //     })
-  //   );
-  // });
+  )
+    .then(users => {
+      return Promise.all(
+        [...Array(totalTweets)].map(() => {
+          return Tweet.create({
+            userId: chance.pickone(users),
+            tweetText: chance.sentence()
+          });
+        })
+      );
+    });
 };
