@@ -22,4 +22,20 @@ describe('tweets routes', () => {
       .then(res => res.body)
       .then(tweets => expect(tweets).toHaveLength(50));
   });
+
+  it('posts a tweet', () => {
+    return request(app)
+      .post('/tweets')
+      .send({
+        tweetText: 'I am a twit face',
+        user: 'auth1'
+      })
+      .set('Content-Type', 'application/json')
+      .then(res => expect(res.body).toEqual({
+        tweetText: 'I am a twit face',
+        user: 'auth1',
+        _id: expect.any(String),
+        __v: 0
+      }));
+  });
 });
