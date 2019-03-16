@@ -22,6 +22,7 @@ module.exports = (
       return Promise.all(
         [...Array(totalTweets)].map(() => {
           return Tweet.create({
+            user: 'auth0|5c897e56896b65416d80485b',
             userId: chance.pickone(users),
             tweetText: chance.sentence()
           });

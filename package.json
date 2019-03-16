@@ -21,7 +21,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "exit 0",
+    "test": "jest --verbose --detectOpenHandles",
     "test:watch": "jest --watch --verbose --runInBand",
     "start": "node server.js",
     "start:watch": "nodemon server.js",
