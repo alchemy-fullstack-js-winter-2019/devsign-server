@@ -31,7 +31,6 @@
   "devDependencies": {
     "eslint": "^5.12.1",
     "jest": "^23.6.0",
-    "nodemon": "^1.18.9",
     "supertest": "^3.4.2"
   },
   "dependencies": {
@@ -42,6 +41,7 @@
     "express-jwt": "^5.3.1",
     "jwks-rsa": "^1.4.0",
     "mongoose": "^5.4.6",
-    "superagent": "^4.1.0"
+    "superagent": "^4.1.0",
+    "nodemon": "^1.18.10"
   }
 }
