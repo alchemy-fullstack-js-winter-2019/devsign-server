@@ -22,6 +22,3 @@ function seedData(count = 100) {
 }
 
 module.exports = seedData;
- 
-// };
-
