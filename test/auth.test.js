@@ -27,4 +27,29 @@ describe('auth routes', () => {
         __v: 0
       }));
   });
+
+  it('signs in a user', () => {
+    return request(app)
+      .post('/auth/signup')
+      .set('Content-Type', 'application/json')
+      .send({
+        username: 'shabster',
+        password: 'passit'
+      })
+      .then(() => {
+        return request(app)
+          .post('/auth/signin')
+          .set('Content-Type', 'application/json')
+          .send({
+            username: 'shabster',
+            password: 'passit'
+          })
+          .then(res => expect(res.body).toEqual([{
+            username: 'shabster',
+            password: 'passit',
+            _id: expect.any(String),
+            __v: 0
+          }]));
+      });
+  });
 });
