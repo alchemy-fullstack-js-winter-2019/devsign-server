@@ -13,11 +13,11 @@
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
     "jwks-rsa": "^1.4.0",
-    "mongoose": "^5.4.7"
+    "mongoose": "^5.4.7",
+    "dotenv": "^6.2.0"
   },
   "devDependencies": {
     "chance": "^1.0.18",
-    "dotenv": "^6.2.0",
     "eslint": "^5.12.1",
     "jest": "^24.0.0",
     "nodemon": "^1.18.9",
