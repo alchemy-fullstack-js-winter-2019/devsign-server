@@ -26,7 +26,8 @@
 * Routes
   * `/tweets`
   * `/users/:username`
-  
+  * `/auth/signup`
+  * `/auth/signin`
 
 * Tesing: jest
 
