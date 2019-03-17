@@ -91,3 +91,37 @@ auth0
 
 in routes
 - need to check the user who create is the same user
+
+
+Deployment 
+- Add to webpack
+  - new CopyWebpackPlug
+
+Backend
+need to add in middleware
+- cors.js
+  module.exports = (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', '*'); //this means only get request allowed to server
+    next();
+  };
+
+-App.js
+app.use(require('../middleware/cors')); // APIs have cors header - will acts as a thirs party API_URL
+
+- start server with nodemon server.js
+Front end
+- services
+  - tweets
+    export const getTweets = () => {
+      return fetch(`${process.env.API_URL}/tweets`, {
+        headers: {
+          Authorization: `Bearer ${}
+        }
+      })
+    }
+
+request.js file
+const request = (url, method, body) => {
+  
+}

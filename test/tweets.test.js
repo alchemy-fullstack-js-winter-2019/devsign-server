@@ -8,22 +8,24 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 jest.mock('../lib/services/auth.js');
+jest.mock('../lib/middleware/ensureAuth.js');
 
 describe('tweets routes', () => {
   beforeEach(() => {
     return seedData(100);
   });
 
-  afterEach(() => {
-    return mongoose.connection.dropDatabase();
+  afterEach(done => {
+    mongoose.connection.close(done);
   });
 
+  afterAll(() => {
+    return mongoose.connection.close();
+  });
+ 
   it('can get a list of tweets', () => {
     return request(app)
       .get('/tweets')
-      .then(res => res.body)
-      .then(tweets => {
-        expect(tweets).toHaveLength(100);
-      });
+      .then(res => expect(res.body).toHaveLength(300));
   });
 });
