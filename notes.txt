@@ -1,3 +1,12 @@
+To connect heroku to git
+- heroku
+  - settings
+    - git remote add heorku <herokugiturlforproject>
+
+Before pushing heorku need to attach a database
+in terminal
+- heroku addons:create mongolab:sandbox -a tweety-twitter
+
 Auth 0
 npm i express-jwt jwks-rsa
 
