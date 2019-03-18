@@ -8,6 +8,7 @@
     "pretest": "npm run lint",
     "test": "jest --verbose --passWithNoTests",
     "test:watch": "jest --watch",
+    "seed": "node seed.js",
     "start": "nodemon server.js"
   },
   "jest": {
@@ -26,6 +27,7 @@
   "homepage": "https://github.com/deetolman/mongo-mongoose#readme",
   "dependencies": {
     "auth0": "^2.15.0",
+    "chance": "^1.0.18",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
