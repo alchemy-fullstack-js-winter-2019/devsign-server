@@ -26,7 +26,8 @@
     "test": "npm run jest",
     "test:watch": "npm run jest -- --watch",
     "start": "node server.js",
-    "start:watch": "nodemon server.js"
+    "start:watch": "nodemon server.js",
+    "seed": "node seed.js"
   },
   "repository": {
     "type": "git",

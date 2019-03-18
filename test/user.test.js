@@ -5,13 +5,14 @@ const mongoose = require('mongoose');
 const app = require('../lib/app');
 const request = require('supertest');
 const seedData = require('./seedData');
+const User = require('../lib/models/User');
 
 jest.mock('../lib/middleware/ensureAuth');
 jest.mock('../lib/services/auth.js');
 
-// const createUser = (name, handle = 'handle', profileImage = 'image', bio = 'bio', location = 'location') => {
-//   return Chirp.create({ name, handle, profileImage, bio, location });
-// } 
+const createUser = (name, handle = 'handle', profileImage = 'image', bio = 'bio', location = 'location') => {
+  return User.create({ name, handle, profileImage, bio, location });
+} 
 
 describe('users routes', () => {
   beforeEach(done => {
@@ -49,15 +50,23 @@ describe('users routes', () => {
     });
   });
 
-  // it('gets all chirps by user_id', () => {
-  //   return Promise.all(['1234', '1234', '1234', '1235', '1233'].map(chirp => createChirp(chirp)))
-  //   .then(() => {
+  // it('gets all user by id', () => {
+  //   return Promise.all(['ughugh'].map(user => createUser(user)))
+  //   .then(user => {
   //     return request(app)
-  //     .get('/chirps/1234')
+  //     .get(`/users/${user._id}`)
   //   })
   //     .then(res => res.body)
-  //     .then(chirps => {
-  //       expect(chirps).toHaveLength(3);
+  //     .then(users => {
+  //       expect(users).toEqual({
+  //         name: 'ughugh',
+  //         handle: 'handle',
+  //         profileImage: 'imageURL',
+  //         bio: 'bio',
+  //         location: 'location',
+  //         _id: expect.any(String),
+  //         __v: 0
+  //       });
   //   });
   // });
 

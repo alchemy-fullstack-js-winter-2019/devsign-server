@@ -4,10 +4,12 @@ CopyWebPackPlugin
 Public/redirect
 GAC push
 go to netlify
+
 authenticate via github
 npm run build (build command)
 dist (publish)
 Deploy site
+
 site settings - build and deploy
 build environment variables
 auth0 client id
@@ -29,7 +31,7 @@ back end server
 heroku dashboard
 heroku git url
 in terminal - git remote add heroku 'heroku url'
-heroku addons: create mongolab:sandbox -a ::name of app::
+heroku addons:create mongolab:sandbox -a ::name of app::
 
 no access?
 
@@ -61,7 +63,11 @@ Now we can take away the promise.resolve stuff and start fetching from the actua
 
 ```
 export const getTweets = () => {
-  return fetch(`${process.env.API_URL}/tweets`)
+  return fetch(`${process.env.API_URL}/tweets`, {
+    headers: {
+      Authorization: `Bearer ${getToken(store.getState())}
+    }
+  })
   .then(res => [res.ok, res.json()])
   .then(([ok, json]) => {
     if(!res.ok) throw 'ERROR';
@@ -71,3 +77,13 @@ export const getTweets = () => {
 ```
 
 Add this to your fetch actions with REJECTED then add to selectors and then to withFetch OR just a reg component as a prop -> check for prop and handle accordingly
+
+# cors.js
+
+```
+module.exports = {req, res, next} => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Header', '*');
+  next();
+}
+```
