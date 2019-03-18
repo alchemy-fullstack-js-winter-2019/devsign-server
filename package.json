@@ -1,0 +1,44 @@
+{
+  "name": "devsign-server",
+  "version": "1.0.0",
+  "description": "* Write a architectural design document (ADD.md)   * Include your user stories   * Include your tech stack   * Include models   * Include routes   * How will you test it?   * Where will you deploy it?   * How will you secure it? (user auth) * Create a back-end for your twitter clone * deploy your twitter clone to heroku",
+  "main": "index.js",
+  "scripts": {
+    "seed": "node seed.js",
+    "start": "node server.js",
+    "start:watch": "nodemon server.js",
+    "test": "jest --verbose --detectOpenHandles",
+    "test:watch": "npm run test -- --watch",
+    "lint": "eslint .",
+    "pretest": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crperezchica/devsign-server.git"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crperezchica/devsign-server/issues"
+  },
+  "homepage": "https://github.com/crperezchica/devsign-server#readme",
+  "dependencies": {
+    "auth0": "^2.15.0",
+    "chance": "^1.0.18",
+    "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "jwks-rsa": "^1.4.0",
+    "mongoose": "^5.4.19",
+    "start": "^5.1.0"
+  },
+  "devDependencies": {
+    "dotenv": "^7.0.0",
+    "eslint": "^5.15.1",
+    "jest": "^24.5.0",
+    "supertest": "^4.0.0"
+  }
+}
