@@ -7,3 +7,5 @@ env:
   - MONGODB_URI=mongodb://127.0.0.1:27017/chirp
 deploy:
   provider: heroku
+  app:
+    master: devsign-server
