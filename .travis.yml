@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- '8'
+services:
+- mongodb
+env:
+- MONGODB_URI=mongodb://127.0.0.1:27017/chirp
+deploy:
+  provider: heroku
+  app:
+    master: devsign-server
+  api_key:
+    secure: gvZL1Vo11gud81cb5zdeH7dwV3S2pDTrI21kLlBUQ/wsyiN5a4AHISL4T8gNXX1nOud50Sn+gWOxQ3z8889L7FVKudpBLhiE6J6P3LsVM6XGkkVli99DTzyUFxJVhKe/RtW7YxgvDsONUGPiE68W26sCytMleCeMi4Si3jY0vLiyFjcFIG+XOE3gie1Kffx/z87eYmyaxo/Dh71VA6vd5xTYIcKmxpIp3mqUqA4cUpG1/dz/nUjT3RCUwJniaKpNtIqJ2AY214umVhqhEi+ohq6jzd2P6CQNFusgUhtOJP30IjkuUiuIhsDxgM/6k9NDls+uBWvmPJgOVko3l5jPm4HlkNrxQWnMlNjqGh5ihFbpKYInnGuB9Z2+R5F5pO1XYwQpgPrGVtVG7k1s4X7HSjeQUlBT3Q4I8cN2zmDukHhVefYwlZ5zR/Jpj1sPZ4NT+B/FlChgREuznLhxbAwChiL4DLHZYJR1qBLZZ3lwyvgLZHd+Wr05tPKolNoEbDbQe0FzkY4SeGtWH+YZj3VffiqSK5PvXMs65UsnFGdLvimRczo9hw2m4ywmjHEIT1M06DTybZlx46AV7Iv5UVo+QrixeAZ9DQIKJutygFPRuLTJ40Ea7Beqlxpb6QGbQs81U4PJiq+X/WaRwpYZnhMCjV13XYEKEs8dQHxKQGdbnWE=
