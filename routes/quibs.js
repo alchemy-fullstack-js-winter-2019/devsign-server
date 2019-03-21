@@ -1,14 +1,14 @@
 const { Router } = require('express');
-const Tweet = require('../lib/models/Tweet');
+const Quib = require('../lib/models/Quib');
 // const ensureAuth = require('../lib/middleware/ensureAuth');
 const { populateUsers } = require('../lib/services/auth');
 
 module.exports = Router()
   .get('/', (req, res, next) => {
-    Tweet
+    Quib
       .find()
       .lean()
-      .then(tweets => populateUsers(tweets))
-      .then(tweets => res.send(tweets))
+      .then(quibs => populateUsers(quibs))
+      .then(quibs => res.send(quibs))
       .catch(next);
   });

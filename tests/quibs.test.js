@@ -7,7 +7,7 @@ const seedData = require('./seedData');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe('tweets routes', () => {
+describe('quibs routes', () => {
   beforeEach(() => {
     return seedData(20);
   });
@@ -16,12 +16,12 @@ describe('tweets routes', () => {
     return mongoose.connection.dropDatabase();
   });
   
-  it('can get a list of tweets', () => {
+  it('can get a list of quibs', () => {
     return request(app)
-      .get('/tweets')
+      .get('/quibs')
       .then(res => res.body)
-      .then(tweets => {
-        expect(tweets).toHaveLength(20);
+      .then(quibs => {
+        expect(quibs).toHaveLength(20);
       });
   });
 });
