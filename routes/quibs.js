@@ -4,6 +4,13 @@ const Quib = require('../lib/models/Quib');
 const { populateUsers } = require('../lib/services/auth');
 
 module.exports = Router()
+  .post('/', (req, res, next) => {
+    const { body } = req.body;
+    Quib 
+      .create({ body, user: req.user.user_id })
+      .then(quib => res.json(quib))
+      .catch(next);
+  })
   .get('/', (req, res, next) => {
     Quib
       .find()
